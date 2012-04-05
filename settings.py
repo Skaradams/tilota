@@ -1,5 +1,5 @@
 # Django settings for tilota project.
-
+import os
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -143,3 +143,6 @@ LOGGING = {
         },
     }
 }
+
+IPC_PATH = os.path.join('/var/tilota')
+DAEMON_INBOX = 'ipc://%s/daemon.ipc' % IPC_PATH
