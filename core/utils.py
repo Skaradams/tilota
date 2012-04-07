@@ -56,4 +56,3 @@ def play(game_id, cmd):
 
     return formated_text
 
-print play('d2533b0c-18927-4f7eb643', 'help')
