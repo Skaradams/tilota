@@ -17,7 +17,7 @@ def create_new_game(game_cmd):
     daemon_socket.send_json(
         {'name': 'get_game_id', 'pid': game.process.pid, 'reply_ipc': tmp_ipc}
     )
-    game_id = tmp_socket.recv_json()
+    game_id = tmp_socket.recv_json()['game_id']
     daemon_socket.send_json({'name': 'save_checkpoints', 'reply_ipc': tmp_ipc})
     tmp_socket.recv_json()
     tmp_socket.close()
@@ -53,6 +53,4 @@ def play(game_id, cmd):
               and not re.compile('^(|[^\w])*%s(|[^\w])*$' % cmd).match(line):
                 end_of_text_reached = True
                 formated_text = line
-
     return formated_text
-
