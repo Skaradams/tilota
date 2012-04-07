@@ -1,17 +1,14 @@
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls.defaults import *
+from django.contrib import admin
+from tastypie.api import Api
+admin.autodiscover()
+from tilota.service import views
 
-# Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+api = Api(api_name='tilota')
+for resource_name in views.__all__:
+    api.register(getattr(views, resource_name)())
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'tilota.views.home', name='home'),
-    # url(r'^tilota/', include('tilota.foo.urls')),
-
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    (r'^api/', include(api.urls)),
+    (r'^admin/', include(admin.site.urls)),
 )

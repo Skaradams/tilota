@@ -83,4 +83,4 @@ if __name__ == '__main__':
         if proc.name == 'tilotad.py' and proc.pid != os.getpid() \
                                      or proc.name == 'dmtcp_coordinator':
             proc.kill()
-    TilotaDaemon(fake=True).start()
+    TilotaDaemon().start()
