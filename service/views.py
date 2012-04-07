@@ -9,6 +9,7 @@ __all__ = (
     'GameHistoryResource',
 )
 
+
 class OnlyUserContentAuthorization(DjangoAuthorization):
     def apply_limits(self, request, object_list):
         if request and hasattr(request, 'user'):
@@ -19,16 +20,16 @@ class OnlyUserContentAuthorization(DjangoAuthorization):
 
 class GameInfoResource(ModelResource):
     class Meta:
-        queryset = models.Session.objects.all()
+        queryset = models.GameInfo.objects.all()
         resource_name = 'game-info'
         allowed_methods = ['get']
         authentication = BasicAuthentication()
         authorization = DjangoAuthorization()
-    
+
 
 class GameResource(ModelResource):
     class Meta:
-        queryset = models.Session.objects.all()
+        queryset = models.Game.objects.all()
         resource_name = 'game'
         allowed_methods = ['get', 'post', 'put', 'delete']
         authentication = BasicAuthentication()
@@ -37,9 +38,8 @@ class GameResource(ModelResource):
 
 class GameHistoryResource(ModelResource):
     class Meta:
-        queryset = models.Session.objects.all()
+        queryset = models.GameHistory.objects.all()
         resource_name = 'game-history'
         allowed_methods = ['get', 'post']
         authentication = BasicAuthentication()
         authorization = DjangoAuthorization()
-
