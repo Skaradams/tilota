@@ -65,9 +65,9 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(
+        os.path.abspath(os.path.dirname(__file__)), 'static'
+    ),
 )
 
 # List of finder classes that know how to find static files in
@@ -85,7 +85,6 @@ SECRET_KEY = '_uubsjq&@o2ff=8x9^i_7ldzg2&lpv7s@wh58%1wu+lt(+t!c&'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -99,9 +98,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'tilota.urls'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates"
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(os.path.abspath(os.path.dirname(__file__)), 'templates')
 )
 
 INSTALLED_APPS = (
