@@ -43,7 +43,6 @@ class TilotaDaemon(Daemon):
         }
 
     def _dispatch(self, message):
-        print message
         message_name = message.get('name', None)
         if message_name in self.CALLBACKS:
             self.CALLBACKS[message_name](message)
@@ -63,7 +62,6 @@ class TilotaDaemon(Daemon):
         if not message.get('pid', None):
             raise ValueError
         response = self._coordinator.cmd('l')
-        print response
         search_result = re.compile(
             '[0-9]+\, [\w]+\[%d\]\@[\w]+\,' \
             ' ([\w\-]+)\, RUNNING' % message['pid']
